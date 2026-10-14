@@ -4,6 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit",
     "harness:start": "node harness/scripts/state.mjs start",
     "harness:stop": "node harness/scripts/state.mjs stop",
     "harness:status": "node harness/scripts/state.mjs status",
@@ -20,5 +25,25 @@
     "gate:3": "node harness/scripts/gate.mjs 3",
     "gate:4": "node harness/scripts/gate.mjs 4",
     "gate:5": "node harness/scripts/gate.mjs 5"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^15.0.0",
+    "playwright": "^1.48.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "^8.0.0",
+    "vite": "^6.0.0"
   }
 }
