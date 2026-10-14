@@ -1,0 +1,270 @@
+/*
+ * 📌 이 파일은: 앱 전체가 함께 쓰는 디자인 재료 창고예요. 글꼴, 색, 글자 크기, 여백, 모서리 둥글기를 한곳에 모아 뒀어요.
+ *
+ * 큰 흐름
+ *  1. 글꼴 파일 등록 (@font-face)
+ *  2. 디자인 재료에 이름 붙이기 (:root 안의 -- 로 시작하는 줄들)
+ *  3. 글자 스타일 묶음 만들기 (.heading-h1, .body-medium 등)
+ *
+ * 처음 보는 용어
+ *  - CSS 변수: 값에 붙인 이름이에요. "--이름: 값;"으로 만들고 "var(--이름)"으로 꺼내 써요.
+ *    색을 바꿀 때 이름이 가리키는 값 한 곳만 고치면 그 이름을 쓴 모든 곳이 함께 바뀌어요.
+ *  - 디자인 토큰: 이렇게 이름 붙여 둔 디자인 값들을 부르는 말이에요. Figma의 변수(Variables)와 같은 개념이에요.
+ *  - 클래스: 점(.)으로 시작하는 이름이에요. 스타일 여러 개를 한 묶음으로 만들어 둔 거예요.
+ */
+
+/* "Pretendard DS"라는 이름으로 글꼴 파일을 등록해요. 굵기 700(Bold) 파일 하나만 등록되어 있어요. */
+/* font-display: swap 은 글꼴 파일을 받는 동안 기본 글꼴로 먼저 글자를 보여주라는 뜻이에요. */
+@font-face {
+  font-family: "Pretendard DS";
+  src: url("/fonts/Pretendard-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* :root 는 "문서 전체"를 뜻해요. 여기에 만든 변수는 앱 어디서든 쓸 수 있어요. */
+/* 이름 중간의 \/ 는 그냥 슬래시(/)예요. CSS 이름에는 /를 바로 쓸 수 없어서 앞에 \를 붙였어요. */
+:root {
+  --font-family: "Pretendard DS";
+  /* [1층: 원재료 색] 실제 색상값이에요. #으로 시작하는 글자가 색을 나타내는 코드예요. */
+  /* 숫자가 클수록 진한 색이에요 (gray/0 = 흰색, gray/950 = 검정). */
+  --gray\/950: #000;
+  --gray\/900: #181A1B;
+  --gray\/800: #2D2D2D;
+  --gray\/600: #66707A;
+  --gray\/500: #878787;
+  --gray\/400: #B7BDC4;
+  --gray\/300: #D9DCDF;
+  --gray\/200: #EFF1F3;
+  --gray\/100: #F7F7F7;
+  --gray\/0: #FFF;
+  --pink\/500: #FF2E98;
+  --pink\/600: #E6007E;
+  --pink\/50: #FFF5FA;
+  --pink\/25: #FFF8F5;
+  --red\/500: #E30036;
+  --red\/50: #FFF0F3;
+  /* 끝의 두 자리 1A는 투명도예요. 약 10%만 보이는 검정이라는 뜻이에요. */
+  --black\/10: #0000001A;
+  --brand\/gray: #6B6B6B;
+  --brand\/red: #A50034;
+  /* [2층: 용도별 색] 위의 원재료 색에 "어디에 쓰는지" 이름을 붙였어요. */
+  /* 예: 본문 글자색(text/primary)은 gray/900을 가리켜요. 화면을 만들 때는 이 2층 이름을 써요. */
+  /* text = 글자, bg = 배경, border = 테두리, fill = 채우기, icon = 아이콘 색이에요. */
+  --text\/primary: var(--gray\/900);
+  --text\/secondary: var(--gray\/600);
+  --text\/tertiary: var(--gray\/500);
+  --text\/on-dark: var(--gray\/0);
+  --text\/accent: var(--pink\/500);
+  --text\/error: var(--red\/500);
+  --text\/placeholder: var(--gray\/400);
+  --text\/on-disabled: var(--gray\/600);
+  --bg\/surface: var(--gray\/0);
+  --bg\/default: var(--gray\/100);
+  --bg\/subtle: var(--gray\/200);
+  --bg\/inverse: var(--gray\/800);
+  --bg\/accent-subtle: var(--pink\/50);
+  --bg\/error-subtle: var(--red\/50);
+  --border\/default: var(--gray\/300);
+  --border\/subtle: var(--gray\/200);
+  --border\/strong: var(--gray\/900);
+  --border\/divider: var(--black\/10);
+  --border\/focus: var(--pink\/500);
+  --border\/error: var(--red\/500);
+  --fill\/primary: var(--pink\/500);
+  --fill\/secondary: var(--gray\/900);
+  --fill\/tertiary: var(--gray\/200);
+  --fill\/disabled: var(--gray\/300);
+  --fill\/disabled-strong: var(--gray\/400);
+  --fill\/primary-hover: var(--pink\/600);
+  --icon\/default: var(--gray\/600);
+  --icon\/strong: var(--gray\/900);
+  --border\/medium: var(--gray\/600);
+  --surface\/default: var(--gray\/0);
+  --icon\/accent: var(--pink\/500);
+  --icon\/on-dark: var(--gray\/0);
+  --icon\/disabled: var(--gray\/300);
+  --icon\/error: var(--red\/500);
+  --icon\/primary: var(--gray\/950);
+  --brand\/primary: var(--pink\/500);
+  /* [글자 크기] 단위(px)가 빠진 숫자만 적혀 있어요. */
+  --font-size\/heading-h1: 32;
+  --font-size\/heading-h2: 28;
+  --font-size\/heading-h3: 24;
+  --font-size\/heading-h4: 20;
+  --font-size\/subtitle: 18;
+  --font-size\/body: 16;
+  --font-size\/body-small: 14;
+  --font-size\/caption: 13;
+  --font-size\/caption-mini: 10;
+  /* [여백] 요소 사이의 간격으로 쓰는 값들이에요. */
+  --spacing\/4: 4;
+  --spacing\/8: 8;
+  --spacing\/12: 12;
+  --spacing\/16: 16;
+  --spacing\/20: 20;
+  --spacing\/24: 24;
+  --spacing\/32: 32;
+  --spacing\/40: 40;
+  --spacing\/48: 48;
+  --spacing\/80: 80;
+  --spacing\/10: 10;
+  /* [모서리 둥글기] 숫자가 클수록 더 둥글어요. full(9999)은 알약처럼 완전히 둥근 모양이에요. */
+  --radius\/4: 4;
+  --radius\/8: 8;
+  --radius\/12: 12;
+  --radius\/16: 16;
+  --radius\/20: 20;
+  --radius\/24: 24;
+  --radius\/32: 32;
+  --radius\/full: 9999;
+}
+
+/* 여기부터는 글자 스타일 묶음이에요. 묶음마다 아래 6가지를 정하고, 값만 조금씩 달라요. */
+/*  - font-family: 글꼴 (모두 위에서 등록한 Pretendard DS) */
+/*  - font-style: 굵기 이름이 적혀 있어요 */
+/*  - font-size: 글자 크기 */
+/*  - font-weight: 굵기 (500 보통, 600 조금 굵게, 700 굵게) */
+/*  - line-height: 줄 높이 (글자가 차지하는 한 줄의 세로 길이) */
+/*  - letter-spacing: 글자 사이 간격 */
+
+/* 제목(heading): h1이 가장 크고 h4로 갈수록 작아져요 (32 → 28 → 24 → 20px). */
+.heading-h1 {
+  font-family: var(--font-family);
+  font-style: "Bold";
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 44px;
+  letter-spacing: 0px;
+}
+
+.heading-h2 {
+  font-family: var(--font-family);
+  font-style: "Bold";
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: 0px;
+}
+
+.heading-h3 {
+  font-family: var(--font-family);
+  font-style: "Bold";
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0px;
+}
+
+.heading-h4 {
+  font-family: var(--font-family);
+  font-style: "Medium";
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0px;
+}
+
+/* 소제목(subtitle): 18px. 굵기만 다른 두 가지예요. */
+.subtitle-bold {
+  font-family: var(--font-family);
+  font-style: "Bold";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0px;
+}
+
+.subtitle-default {
+  font-family: var(--font-family);
+  font-style: "SemiBold";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0px;
+}
+
+/* 본문(body): 16px. strong은 조금 굵게, medium은 보통 굵기예요. */
+.body-strong {
+  font-family: var(--font-family);
+  font-style: "SemiBold";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0px;
+}
+
+.body-medium {
+  font-family: var(--font-family);
+  font-style: "Medium";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0px;
+}
+
+/* 작은 본문(body-small): 14px. */
+.body-small-strong {
+  font-family: var(--font-family);
+  font-style: "SemiBold";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  letter-spacing: 0px;
+}
+
+.body-small-medium {
+  font-family: var(--font-family);
+  font-style: "Medium";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: 0px;
+}
+
+/* 보조 설명(caption): 13px 이하의 작은 글자예요. 크기와 굵기만 조금씩 달라요 (13, 12, 10px). */
+.caption-medium {
+  font-family: var(--font-family);
+  font-style: "Medium";
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0px;
+}
+
+.caption-small {
+  font-family: var(--font-family);
+  font-style: "Medium";
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0px;
+}
+
+.caption-small-bold {
+  font-family: var(--font-family);
+  font-style: "Bold";
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0px;
+}
+
+.caption-mini {
+  font-family: var(--font-family);
+  font-style: "SemiBold";
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0px;
+}
+
+.caption-bold {
+  font-family: var(--font-family);
+  font-style: "Bold";
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0px;
+}
