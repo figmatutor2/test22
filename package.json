@@ -1,0 +1,24 @@
+{
+  "name": "uplus-plan-subscribe",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "harness:start": "node harness/scripts/state.mjs start",
+    "harness:stop": "node harness/scripts/state.mjs stop",
+    "harness:status": "node harness/scripts/state.mjs status",
+    "harness:enter": "node harness/scripts/state.mjs enter",
+    "harness:exit": "node harness/scripts/state.mjs exit",
+    "harness:approve": "node harness/scripts/state.mjs approve",
+    "harness:reject": "node harness/scripts/state.mjs reject",
+    "harness:scaffold": "node harness/scripts/scaffold.mjs",
+    "harness:tokens": "node harness/scripts/gen-tokens.mjs",
+    "harness:router": "node harness/scripts/gen-router.mjs",
+    "lint:tokens": "node harness/scripts/token-lint.mjs src",
+    "gate:1": "node harness/scripts/gate.mjs 1",
+    "gate:2": "node harness/scripts/gate.mjs 2",
+    "gate:3": "node harness/scripts/gate.mjs 3",
+    "gate:4": "node harness/scripts/gate.mjs 4",
+    "gate:5": "node harness/scripts/gate.mjs 5"
+  }
+}
